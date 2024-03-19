@@ -1,3 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
 body{
-    background: yellow;
+    background:url('./img/bodybg2.jpeg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden ;
+    font-family: "Lobster", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+   
+}
+.header{
+    background:url('./img/header.png') no-repeat center center;
+    height: 239px;
+    margin: 50px 0;
+    
+}
+.palya{
+    background: url('./img/bg.webp');
+    display: flex;
+    width: 600px;
+    margin: 0 auto;
+    flex-direction: column;
+}
+.sor{
+    display: flex;
+}
+.cella{
+    width: 200px;
+    height: 200px;
+    background: url('./img/fa.webp'); 
+    font-size: 5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    position: relative;
+}
+.ures{
+    width: 200px;
+    height: 200px;
+}
+
+@keyframes fel {
+    0% {top:0;}
+    100% {top:-200px;}
+}
+
+.fel{
+    animation-name: fel;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+@keyframes le {
+    0% {top:0;}
+    100% {top:200px;}
+}
+
+.le{
+    animation-name: le;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+@keyframes bal {
+    0% {left:0;}
+    100% {left:-200px;}
+}
+
+.bal{
+    animation-name: bal;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes jobb {
+    0% {left:0;}
+    100% {left:200px;}
+}
+
+.jobb{
+    animation-name: jobb;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
 }
