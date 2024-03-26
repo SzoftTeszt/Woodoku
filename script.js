@@ -1,4 +1,3 @@
-console.log("helló")
 
 function hanyadik(elem){
     let sz=0;
@@ -8,53 +7,104 @@ function hanyadik(elem){
     }
     return sz;
 }
+function kever(){
+    for (let i = 0; i < 3; i++) {
+       
+        
+    
+    let cella=null
+    let ures= document.getElementsByClassName("ures")[0]
+    let sorszam=hanyadik(ures)
+    switch (Math.round(Math.random()*3)){
+    case 0:
+        if (ures.nextElementSibling) cella=ures.nextElementSibling
+        break
+    case 1:
+       if (ures.previousElementSibling) cella=ures.previousElementSibling
+        break
+    case 2:
+        if (ures.parentNode.previousElementSibling)
+        cella= ures.parentNode.previousElementSibling.children[sorszam]
+        break
+    case 3:
+        if (ures.parentNode.nextElementSibling) 
+        cella=ures.parentNode.nextElementSibling.children[sorszam]
+        break
+    }
+    if (!cella) i--
+    else csere(cella)
+}
+
+}
+
+function csere(cella){
+    let ures= document.getElementsByClassName("ures")[0]
+    ures.innerHTML=cella.innerHTML
+    cella.innerHTML="";
+    ures.addEventListener("click", mozgat)
+    ures.className="cella"
+    cella.className="ures"
+    cella.removeEventListener("click", mozgat)
+}
 
 function mozgat(){
-    let sorszam=hanyadik(this)
+    mozgas(this)
+}
+
+function mozgas(cella){
+    let sorszam=hanyadik(cella)
     let ures= document.getElementsByClassName("ures")[0]
     let mozgott=false
 
-    if (this.nextElementSibling && this.nextElementSibling.className=="ures")
+    if (cella.nextElementSibling && cella.nextElementSibling.className=="ures")
     {
-        this.classList.add('jobb')
+        cella.classList.add('jobb')
         mozgott=true
     }
 
-    if (this.previousElementSibling && this.previousElementSibling.className=="ures"){
-        this.classList.add('bal')
+    if (cella.previousElementSibling && cella.previousElementSibling.className=="ures"){
+        cella.classList.add('bal')
         mozgott=true
     }
 
 
-    if (this.parentNode.previousElementSibling && this.parentNode.previousElementSibling.children[sorszam].className=="ures"){
-        this.classList.add('fel') 
+    if (cella.parentNode.previousElementSibling && cella.parentNode.previousElementSibling.children[sorszam].className=="ures"){
+        cella.classList.add('fel') 
         mozgott=true
     }
 
-    if (this.parentNode.nextElementSibling && this.parentNode.nextElementSibling.children[sorszam].className=="ures"){
-        this.classList.add('le') 
+    if (cella.parentNode.nextElementSibling && cella.parentNode.nextElementSibling.children[sorszam].className=="ures"){
+        cella.classList.add('le') 
         mozgott=true
     }
 
     if (mozgott){ 
         setTimeout(()=>{   
-            ures.innerHTML=this.innerHTML
-            this.innerHTML="";
+            ures.innerHTML=cella.innerHTML
+            cella.innerHTML="";
             ures.addEventListener("click", mozgat)
             ures.className="cella"
-            this.className="ures"
-            this.removeEventListener("click", mozgat)
+            cella.className="ures"
+            cella.removeEventListener("click", mozgat)
+            gyoztunke()
         },300)
     }
     
 }
+function gyoztunke(){
+    cellak = document.querySelectorAll(".sor div")
+    for (let i = 0; i < cellak.length; i++) {
+        if ( cellak[i].innerHTML==i+1)        
+            cellak[i].classList.add('green')
+        else cellak[i].classList.remove('green')        
+    }
+    jok = document.getElementsByClassName("green")
+    if (jok.length==8) alert("Kiraktad! Isten vagy!")
+}
 
 function palyaEpito(){
     let cella = document.createElement('div');
-    cella.className="cella"
- 
-
-    
+    cella.className="cella"    
 
     let sor = document.createElement('div')
     sor.className="sor"
@@ -91,3 +141,4 @@ function palyaEpito(){
 }
 
 palyaEpito()
+kever()
